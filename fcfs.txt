@@ -1,0 +1,52 @@
+#include<iostream.h>
+#include<conio.h>
+
+void main()
+{
+  clrscr();
+  int AT[20],BT[20],CT[20],TAT[20],WT[20],PID[20],n,i,j=0,total=0,averageWT=0;
+  cout<<"Enter the number of processes you have: ";
+  cin>>n;
+  cout<<"Enter process ID for each process: ";
+  for(i=0;i<n;i++)
+   {
+    cin>>PID[i];
+   }
+  cout<<"Enter Arrival Time for each process: ";
+  for(i=0;i<n;i++)
+    cin>>AT[i];
+  cout<<"Enter Burst Time for each process: ";
+  for(i=0;i<n;i++)
+    cin>>BT[i];
+  for(i=0;i<n;i++)
+   {
+     if(PID[i]<PID[j])
+      {
+       CT[0]=AT[0]+BT[0];
+       for(i=0;i<n;i++)
+        {
+          if(AT[i+1]<=CT[i])
+           {
+             CT[i+1]=CT[i]+BT[i+1];
+           }
+          else
+           {
+            CT[i+1]=AT[i+1]+BT[i+1];
+           }
+
+
+     TAT[i]=CT[i]-AT[i];
+    WT[i]=TAT[i]-BT[i];
+   }
+  cout<<"\nPID\tAT\tBT\tCT\tTAT\tWT";
+  for(i=0;i<n;i++)
+   cout<<"\n"<<PID[i]<<"\t"<<AT[i]<<"\t"<<BT[i]<<"\t"<<CT[i]<<"\t"<<TAT[i]<<"\t"<<WT[i];
+for(i=0;i<n;i++)
+ {
+  total=WT[i]+total;
+ }
+averageWT=total/n;
+cout<<”\nAverage Waiting Time: “<<averageWT<<”\n”;
+  getch();
+}
+
